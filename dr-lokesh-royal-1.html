@@ -1,0 +1,558 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Dr. Lokesh Royal – Dental Clinic, Delhi</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600;700&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+<style>
+  :root {
+    --navy:  #0d1b2a;
+    --gold:  #c9a84c;
+    --gold-light: #e8c97a;
+    --cream: #f7f3ec;
+    --teal:  #1a6b72;
+    --teal-light: #2a9ba5;
+    --white: #ffffff;
+    --gray:  #6b7280;
+  }
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body { font-family: 'DM Sans', sans-serif; background: var(--cream); color: var(--navy); overflow-x: hidden; }
+
+  /* ── NAV ── */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 18px 6vw;
+    background: rgba(13,27,42,0.93);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid rgba(201,168,76,0.15);
+  }
+  .logo-wrap { display: flex; align-items: center; gap: 12px; }
+  .logo-icon { width:42px; height:42px; background:var(--gold); border-radius:50%; display:flex; align-items:center; justify-content:center; }
+  .logo-icon svg { width:22px; height:22px; fill:var(--navy); }
+  .logo-text strong { font-family:'Cormorant Garamond',serif; font-size:1.15rem; font-weight:700; color:var(--white); display:block; letter-spacing:.04em; }
+  .logo-text span   { font-size:.68rem; color:var(--gold-light); letter-spacing:.12em; text-transform:uppercase; }
+  .nav-right { display:flex; align-items:center; gap:12px; }
+  .nav-appt { background:var(--gold); color:var(--navy); padding:9px 20px; border-radius:30px; font-size:.85rem; font-weight:600; text-decoration:none; transition:transform .2s,box-shadow .2s; }
+  .nav-appt:hover { transform:translateY(-1px); box-shadow:0 6px 18px rgba(201,168,76,.4); }
+  .nav-phone { display:flex; align-items:center; gap:8px; color:var(--white); text-decoration:none; font-size:.85rem; font-weight:500; border:1px solid rgba(255,255,255,.2); padding:9px 16px; border-radius:30px; transition:border-color .2s,color .2s; }
+  .nav-phone:hover { border-color:var(--gold); color:var(--gold); }
+  .nav-phone svg { width:14px; height:14px; fill:currentColor; }
+
+  /* ── HERO ── */
+  .hero { position:relative; min-height:100vh; background:var(--navy); display:flex; flex-direction:column; overflow:hidden; }
+  .hero-bg { position:absolute; inset:0; background:radial-gradient(ellipse at 60% 50%, #1a3a5c 0%, #0d1b2a 70%); }
+  .hero-img { position:absolute; right:0; top:0; bottom:0; width:50%; overflow:hidden; }
+  .hero-img img { width:100%; height:100%; object-fit:cover; object-position:center top; opacity:.3; filter:brightness(.7) saturate(.8); }
+  .hero-img::after { content:''; position:absolute; inset:0; background:linear-gradient(to right,var(--navy) 0%,transparent 55%); }
+  .hero-arc { position:absolute; bottom:-2px; left:0; right:0; height:80px; z-index:2; }
+  .hero-arc svg { width:100%; height:100%; }
+  .hero-body { position:relative; z-index:5; flex:1; display:flex; flex-direction:column; justify-content:center; padding:120px 6vw 100px; max-width:660px; }
+  .badge { display:inline-flex; align-items:center; gap:8px; background:rgba(201,168,76,.15); border:1px solid rgba(201,168,76,.35); color:var(--gold-light); font-size:.72rem; font-weight:500; letter-spacing:.1em; text-transform:uppercase; padding:6px 14px; border-radius:20px; margin-bottom:22px; width:fit-content; }
+  .hero h1 { font-family:'Cormorant Garamond',serif; font-size:clamp(2.6rem,6vw,4.6rem); font-weight:700; color:var(--white); line-height:1.06; margin-bottom:8px; }
+  .hero h1 span { color:var(--gold); }
+  .hero-sub { font-size:.92rem; color:rgba(255,255,255,.4); letter-spacing:.12em; text-transform:uppercase; margin-bottom:16px; }
+  .hero p { color:rgba(255,255,255,.6); font-size:.97rem; line-height:1.75; max-width:440px; margin-bottom:34px; }
+  .hero-ctas { display:flex; gap:14px; flex-wrap:wrap; }
+  .btn-primary { background:var(--gold); color:var(--navy); padding:13px 28px; border-radius:40px; font-weight:600; font-size:.92rem; text-decoration:none; display:inline-flex; align-items:center; gap:8px; transition:transform .2s,box-shadow .2s; }
+  .btn-primary:hover { transform:translateY(-2px); box-shadow:0 8px 24px rgba(201,168,76,.4); }
+  .btn-secondary { border:1px solid rgba(255,255,255,.3); color:var(--white); padding:13px 28px; border-radius:40px; font-weight:500; font-size:.92rem; text-decoration:none; transition:background .2s; }
+  .btn-secondary:hover { background:rgba(255,255,255,.08); }
+
+  /* ── STATS ── */
+  .stats-strip { background:var(--white); display:grid; grid-template-columns:repeat(3,1fr); border-bottom:1px solid rgba(0,0,0,.07); }
+  .stat-item { padding:26px 20px; text-align:center; border-right:1px solid rgba(0,0,0,.07); }
+  .stat-item:last-child { border-right:none; }
+  .stat-num { font-family:'Cormorant Garamond',serif; font-size:2.2rem; font-weight:700; color:var(--teal); line-height:1; }
+  .stat-label { font-size:.72rem; color:var(--gray); margin-top:4px; letter-spacing:.06em; text-transform:uppercase; }
+
+  /* ── SECTION BASE ── */
+  section { padding:80px 6vw; }
+  .section-label { font-size:.72rem; letter-spacing:.14em; text-transform:uppercase; color:var(--teal); font-weight:500; margin-bottom:8px; }
+  .section-title { font-family:'Cormorant Garamond',serif; font-size:clamp(1.9rem,4vw,2.9rem); font-weight:700; color:var(--navy); line-height:1.15; margin-bottom:12px; }
+  .section-desc { color:var(--gray); font-size:.97rem; line-height:1.7; max-width:520px; margin-bottom:44px; }
+
+  /* ── GALLERY ── */
+  .gallery-section { background:var(--cream); }
+  .gallery-grid { display:grid; grid-template-columns:2fr 1fr 1fr; grid-template-rows:240px 240px; gap:12px; }
+  .gallery-grid .g1 { grid-row:1/3; }
+  .gal-item { border-radius:16px; overflow:hidden; position:relative; }
+  .gal-item img { width:100%; height:100%; object-fit:cover; transition:transform .4s; display:block; }
+  .gal-item:hover img { transform:scale(1.04); }
+  .gal-label { position:absolute; bottom:0; left:0; right:0; background:linear-gradient(to top,rgba(13,27,42,.8) 0%,transparent 100%); padding:20px 16px 14px; color:var(--white); font-size:.78rem; font-weight:500; letter-spacing:.04em; text-transform:uppercase; opacity:0; transition:opacity .3s; }
+  .gal-item:hover .gal-label { opacity:1; }
+
+  /* ── SERVICES ── */
+  .services-section { background:var(--white); }
+  .services-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(210px,1fr)); gap:18px; }
+  .service-card { background:var(--cream); border:1px solid rgba(0,0,0,.06); border-radius:16px; padding:26px 22px; transition:transform .25s,box-shadow .25s; position:relative; overflow:hidden; }
+  .service-card::before { content:''; position:absolute; top:0; left:0; right:0; height:3px; background:var(--gold); transform:scaleX(0); transform-origin:left; transition:transform .3s; }
+  .service-card:hover { transform:translateY(-4px); box-shadow:0 10px 28px rgba(0,0,0,.09); }
+  .service-card:hover::before { transform:scaleX(1); }
+  .service-icon { width:46px; height:46px; border-radius:12px; background:rgba(26,107,114,.1); display:flex; align-items:center; justify-content:center; margin-bottom:14px; }
+  .service-icon svg { width:22px; height:22px; stroke:var(--teal); fill:none; stroke-width:1.8; }
+  .service-card h3 { font-size:.97rem; font-weight:600; color:var(--navy); margin-bottom:6px; }
+  .service-card p { font-size:.84rem; color:var(--gray); line-height:1.6; }
+
+  /* ── DOCTOR ── */
+  .doctor-section { background:var(--navy); }
+  .doctor-grid { display:grid; grid-template-columns:1fr 1.2fr; gap:60px; align-items:center; }
+  .doctor-img-wrap { position:relative; }
+  .doctor-img-wrap img { width:100%; border-radius:20px; object-fit:cover; height:420px; filter:brightness(.9) saturate(.9); display:block; }
+  .doc-badge { position:absolute; bottom:-18px; right:-18px; background:var(--gold); color:var(--navy); border-radius:16px; padding:18px 22px; text-align:center; box-shadow:0 8px 24px rgba(0,0,0,.3); }
+  .doc-badge strong { font-family:'Cormorant Garamond',serif; font-size:2rem; font-weight:700; display:block; line-height:1; }
+  .doc-badge span { font-size:.72rem; letter-spacing:.08em; text-transform:uppercase; opacity:.75; }
+  .doctor-info .section-title { color:var(--white); }
+  .doctor-info .section-desc { color:rgba(255,255,255,.55); margin-bottom:28px; }
+  .doc-highlights { display:grid; grid-template-columns:1fr 1fr; gap:14px; }
+  .doc-hl { background:rgba(255,255,255,.05); border:1px solid rgba(255,255,255,.08); border-radius:12px; padding:16px 18px; }
+  .doc-hl h4 { font-size:.88rem; font-weight:600; color:var(--gold-light); margin-bottom:4px; }
+  .doc-hl p { font-size:.78rem; color:rgba(255,255,255,.5); line-height:1.5; }
+
+  /* ── WHY ── */
+  .why-section { background:var(--cream); }
+  .why-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(180px,1fr)); gap:18px; }
+  .why-card { background:var(--white); border:1px solid rgba(0,0,0,.07); border-radius:16px; padding:26px 20px; text-align:center; }
+  .why-num { font-family:'Cormorant Garamond',serif; font-size:2.8rem; font-weight:700; color:var(--teal); line-height:1; margin-bottom:6px; }
+  .why-card h4 { font-size:.9rem; font-weight:600; color:var(--navy); margin-bottom:4px; }
+  .why-card p { font-size:.8rem; color:var(--gray); line-height:1.55; }
+
+  /* ── REVIEWS ── */
+  .testimonials-section { background:var(--white); }
+  .reviews-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(240px,1fr)); gap:18px; }
+  .review-card { border:1px solid rgba(0,0,0,.07); border-radius:16px; padding:22px; }
+  .stars { color:var(--gold); font-size:.95rem; margin-bottom:10px; }
+  .review-text { font-size:.87rem; color:var(--gray); line-height:1.65; margin-bottom:12px; }
+  .reviewer { font-size:.8rem; font-weight:600; color:var(--navy); }
+
+  /* ── APPOINTMENT ── */
+  .appt-section { background:var(--navy); }
+  .appt-grid { display:grid; grid-template-columns:1fr 1fr; gap:60px; align-items:start; }
+  .appt-info .section-title { color:var(--white); }
+  .appt-info .section-desc { color:rgba(255,255,255,.5); margin-bottom:32px; }
+  .appt-perks { display:flex; flex-direction:column; gap:16px; }
+  .appt-perk { display:flex; align-items:flex-start; gap:14px; }
+  .appt-perk-icon { width:38px; height:38px; min-width:38px; background:rgba(201,168,76,.15); border-radius:10px; display:flex; align-items:center; justify-content:center; }
+  .appt-perk-icon svg { width:18px; height:18px; stroke:var(--gold); fill:none; stroke-width:2; }
+  .appt-perk p { font-size:.87rem; color:rgba(255,255,255,.6); line-height:1.55; }
+  .appt-perk strong { color:var(--white); display:block; font-size:.9rem; margin-bottom:2px; }
+
+  .appt-form-wrap { background:var(--white); border-radius:20px; padding:36px 30px; }
+  .form-title { font-family:'Cormorant Garamond',serif; font-size:1.55rem; font-weight:700; color:var(--navy); margin-bottom:4px; }
+  .form-sub { font-size:.82rem; color:var(--gray); margin-bottom:24px; }
+  .form-row { display:grid; grid-template-columns:1fr 1fr; gap:14px; }
+  .form-group { margin-bottom:15px; }
+  .form-group label { display:block; font-size:.75rem; font-weight:600; color:var(--navy); letter-spacing:.04em; text-transform:uppercase; margin-bottom:5px; }
+  .form-group input,
+  .form-group select,
+  .form-group textarea { width:100%; padding:11px 14px; border:1.5px solid rgba(0,0,0,.12); border-radius:10px; font-family:'DM Sans',sans-serif; font-size:.9rem; color:var(--navy); background:var(--cream); outline:none; transition:border-color .2s,box-shadow .2s; }
+  .form-group input:focus,
+  .form-group select:focus,
+  .form-group textarea:focus { border-color:var(--teal); box-shadow:0 0 0 3px rgba(26,107,114,.12); }
+  .form-group textarea { resize:vertical; min-height:88px; }
+  .btn-submit { width:100%; background:var(--teal); color:var(--white); border:none; padding:14px; border-radius:12px; font-family:'DM Sans',sans-serif; font-size:.97rem; font-weight:600; cursor:pointer; transition:background .2s,transform .2s; display:flex; align-items:center; justify-content:center; gap:10px; margin-top:4px; }
+  .btn-submit:hover { background:var(--teal-light); transform:translateY(-1px); }
+  .btn-submit svg { width:18px; height:18px; fill:currentColor; }
+  .form-note { font-size:.74rem; color:var(--gray); text-align:center; margin-top:11px; }
+  .success-box { display:none; background:#f0fdf4; border:1.5px solid #86efac; border-radius:12px; padding:16px; text-align:center; margin-top:14px; }
+  .success-box.show { display:block; }
+  .success-box p { font-size:.88rem; color:#166534; font-weight:500; }
+
+  /* ── CONTACT ── */
+  .contact-section { background:var(--cream); }
+  .contact-grid { display:grid; grid-template-columns:1fr 1.3fr; gap:40px; }
+  .contact-info h3 { font-family:'Cormorant Garamond',serif; font-size:1.7rem; font-weight:700; color:var(--navy); margin-bottom:22px; }
+  .info-row { display:flex; gap:14px; margin-bottom:18px; align-items:flex-start; }
+  .info-icon { width:40px; height:40px; min-width:40px; background:rgba(26,107,114,.1); border-radius:10px; display:flex; align-items:center; justify-content:center; }
+  .info-icon svg { width:18px; height:18px; stroke:var(--teal); fill:none; stroke-width:2; }
+  .info-label { font-size:.72rem; text-transform:uppercase; letter-spacing:.08em; color:var(--gray); margin-bottom:3px; }
+  .info-val { font-size:.92rem; font-weight:500; color:var(--navy); }
+  .info-val a { color:var(--teal); text-decoration:none; }
+  .info-val a:hover { text-decoration:underline; }
+  .call-box { background:var(--teal); border-radius:16px; padding:24px; color:var(--white); margin-top:6px; }
+  .call-box p { font-size:.83rem; opacity:.7; margin-bottom:5px; }
+  .call-box .nums { font-size:1.12rem; font-weight:600; line-height:1.6; }
+  .call-box a { color:var(--white); text-decoration:none; display:block; }
+  .call-box a:hover { color:var(--gold-light); }
+  .map-wrap { border-radius:16px; overflow:hidden; height:360px; border:1px solid rgba(0,0,0,.1); }
+  .map-wrap iframe { width:100%; height:100%; border:0; }
+
+  /* ── FOOTER ── */
+  footer { background:var(--navy); color:rgba(255,255,255,.45); text-align:center; padding:22px 6vw; font-size:.8rem; }
+  footer span { color:var(--gold); }
+
+  /* ── RESPONSIVE ── */
+  @media(max-width:900px) {
+    .hero-img { display:none; }
+    .doctor-grid, .appt-grid { grid-template-columns:1fr; }
+    .gallery-grid { grid-template-columns:1fr 1fr; grid-template-rows:auto; }
+    .gallery-grid .g1 { grid-row:auto; }
+    .gal-item { height:200px; }
+  }
+  @media(max-width:650px) {
+    nav { padding:14px 4vw; }
+    .nav-phone { display:none; }
+    .stats-strip { grid-template-columns:1fr; }
+    .stat-item { border-right:none; border-bottom:1px solid rgba(0,0,0,.07); }
+    .contact-grid { grid-template-columns:1fr; }
+    .form-row { grid-template-columns:1fr; }
+    .gallery-grid { grid-template-columns:1fr; }
+    .gal-item { height:180px; }
+    .doc-badge { right:0; bottom:-10px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="logo-wrap">
+    <div class="logo-icon">
+      <svg viewBox="0 0 24 24"><path d="M12 2C8.5 2 6 5.5 6 8c0 2 .5 4 1 6.5C7.5 17 8 20 9.5 21.5c1 1 2 .5 2.5-.5.5-1 .8-2.5.8-2.5s.3 1.5.8 2.5c.5 1 1.5 1.5 2.5.5C17.5 20 18 17 18.5 14.5 19 12 19.5 10 19.5 8c0-2.5-2.5-6-7.5-6z"/></svg>
+    </div>
+    <div class="logo-text">
+      <strong>Dr. Lokesh Royal</strong>
+      <span>Dental Clinic · Delhi</span>
+    </div>
+  </div>
+  <div class="nav-right">
+    <a href="tel:9255476803" class="nav-phone">
+      <svg viewBox="0 0 24 24"><path d="M22 16.9v3a2 2 0 01-2.18 2 19.8 19.8 0 01-8.63-3.07A19.5 19.5 0 013.77 11 19.8 19.8 0 01.69 2.38 2 2 0 012.68.22h3a2 2 0 012 1.72c.13.96.36 1.9.7 2.81a2 2 0 01-.45 2.11L6.91 7.91a16 16 0 006.08 6.08l1.27-1.27a2 2 0 012.11-.45c.91.34 1.85.57 2.81.7A2 2 0 0122 16.9z"/></svg>
+      92554 76803
+    </a>
+    <a href="#appointment" class="nav-appt">Book Appointment</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-img">
+    <img src="https://images.unsplash.com/photo-1606811841689-23dfddce3e95?w=900&q=80" alt="Dentist treating patient"/>
+  </div>
+  <div class="hero-body">
+    <div class="badge">⭐ 4.8 · 400+ Reviews · Most Trusted in Shakarpur</div>
+    <div class="hero-sub">Putting a Smile on Every Face</div>
+    <h1>Dr. Lokesh <span>Royal</span></h1>
+    <p>Expert dental care in the heart of Delhi — painless treatments, modern equipment, and a team that genuinely cares about your smile.</p>
+    <div class="hero-ctas">
+      <a href="#appointment" class="btn-primary">
+        <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+        Book Appointment
+      </a>
+      <a href="tel:9255476803" class="btn-secondary">📞 Call Now</a>
+    </div>
+  </div>
+  <div class="hero-arc">
+    <svg viewBox="0 0 1440 80" preserveAspectRatio="none"><path d="M0,80 C360,0 1080,0 1440,80 L1440,80 L0,80 Z" fill="#f7f3ec"/></svg>
+  </div>
+</section>
+
+<!-- STATS -->
+<div class="stats-strip">
+  <div class="stat-item"><div class="stat-num">4.8★</div><div class="stat-label">Google Rating</div></div>
+  <div class="stat-item"><div class="stat-num">400+</div><div class="stat-label">Happy Patients</div></div>
+  <div class="stat-item"><div class="stat-num">10am</div><div class="stat-label">Opens Daily</div></div>
+</div>
+
+<!-- GALLERY -->
+<section class="gallery-section">
+  <div class="section-label">Inside the Clinic</div>
+  <div class="section-title">Our Work & Space</div>
+  <div class="section-desc">A modern, hygienic environment — expert hands, caring approach, real results.</div>
+  <div class="gallery-grid">
+    <div class="gal-item g1">
+      <img src="https://images.unsplash.com/photo-1588776814546-1ffbb172bc4b?w=700&q=80" alt="Dentist with patient"/>
+      <div class="gal-label">Patient Consultation</div>
+    </div>
+    <div class="gal-item">
+      <img src="https://images.unsplash.com/photo-1609840114035-3c981b782dfe?w=500&q=80" alt="Dental treatment"/>
+      <div class="gal-label">Dental Treatment</div>
+    </div>
+    <div class="gal-item">
+      <img src="https://images.unsplash.com/photo-1598256989800-fe5f95da9787?w=500&q=80" alt="Teeth care"/>
+      <div class="gal-label">Teeth Care</div>
+    </div>
+    <div class="gal-item">
+      <img src="https://images.unsplash.com/photo-1559757175-0eb30cd8c063?w=500&q=80" alt="Smile result"/>
+      <div class="gal-label">Smile Results</div>
+    </div>
+    <div class="gal-item">
+      <img src="https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?w=500&q=80" alt="Dental checkup"/>
+      <div class="gal-label">Routine Checkup</div>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section class="services-section">
+  <div class="section-label">What We Offer</div>
+  <div class="section-title">Complete Dental Care</div>
+  <div class="section-desc">From preventive checkups to advanced cosmetic treatments — all under one roof.</div>
+  <div class="services-grid">
+    <div class="service-card">
+      <div class="service-icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M9 12l2 2 4-4"/></svg></div>
+      <h3>Dental Checkup</h3>
+      <p>Thorough exam, X-rays, and professional cleaning to keep your teeth healthy.</p>
+    </div>
+    <div class="service-card">
+      <div class="service-icon"><svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg></div>
+      <h3>Teeth Whitening</h3>
+      <p>Advanced bleaching for a noticeably brighter, whiter smile in one visit.</p>
+    </div>
+    <div class="service-card">
+      <div class="service-icon"><svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div>
+      <h3>Root Canal</h3>
+      <p>Pain-free treatment to save infected teeth and relieve discomfort completely.</p>
+    </div>
+    <div class="service-card">
+      <div class="service-icon"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="4"/><path d="M8 12h8M12 8v8"/></svg></div>
+      <h3>Dental Implants</h3>
+      <p>Permanent tooth replacement that looks and feels completely natural.</p>
+    </div>
+    <div class="service-card">
+      <div class="service-icon"><svg viewBox="0 0 24 24"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg></div>
+      <h3>Orthodontics</h3>
+      <p>Braces and aligners to straighten teeth and correct bite at any age.</p>
+    </div>
+    <div class="service-card">
+      <div class="service-icon"><svg viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg></div>
+      <h3>Gum Treatment</h3>
+      <p>Scaling, deep cleaning, and periodontal therapy for healthy gums.</p>
+    </div>
+  </div>
+</section>
+
+<!-- DOCTOR -->
+<section class="doctor-section">
+  <div class="doctor-grid">
+    <div class="doctor-img-wrap">
+      <img src="https://images.unsplash.com/photo-1537368910025-700350fe46c7?w=600&q=80" alt="Professional dentist"/>
+      <div class="doc-badge">
+        <strong>4.8★</strong>
+        <span>Google Rated</span>
+      </div>
+    </div>
+    <div class="doctor-info">
+      <div class="section-label">Meet the Doctor</div>
+      <div class="section-title">Dr. Lokesh Royal</div>
+      <div class="section-desc">A trusted name in East Delhi's dental care — combining clinical expertise with a patient-first approach that has earned over 400 five-star reviews from families across Shakarpur and beyond.</div>
+      <div class="doc-highlights">
+        <div class="doc-hl"><h4>Painless Treatments</h4><p>Modern anaesthesia for a completely comfortable experience.</p></div>
+        <div class="doc-hl"><h4>Advanced Equipment</h4><p>Latest dental technology for precise, efficient care.</p></div>
+        <div class="doc-hl"><h4>All Ages Welcome</h4><p>From children to seniors — care for the whole family.</p></div>
+        <div class="doc-hl"><h4>Transparent Pricing</h4><p>No hidden charges. Cost discussed before every procedure.</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- WHY US -->
+<section class="why-section">
+  <div class="section-label">Why Choose Us</div>
+  <div class="section-title">Trusted by Hundreds</div>
+  <div class="section-desc">Our numbers reflect the trust patients across Delhi place in us.</div>
+  <div class="why-grid">
+    <div class="why-card"><div class="why-num">400+</div><h4>Verified Reviews</h4><p>4.8 stars on Google — our results speak for themselves.</p></div>
+    <div class="why-card"><div class="why-num">10+</div><h4>Years Experience</h4><p>A decade delivering confident smiles to Delhi families.</p></div>
+    <div class="why-card"><div class="why-num">0</div><h4>Hidden Charges</h4><p>Transparent pricing discussed upfront before every procedure.</p></div>
+    <div class="why-card"><div class="why-num">∞</div><h4>Comfort First</h4><p>Gentle techniques and a calm environment for anxious patients.</p></div>
+  </div>
+</section>
+
+<!-- REVIEWS -->
+<section class="testimonials-section">
+  <div class="section-label">Patient Reviews</div>
+  <div class="section-title">What People Say</div>
+  <div class="section-desc">Real words from real patients who trusted us with their smiles.</div>
+  <div class="reviews-grid">
+    <div class="review-card">
+      <div class="stars">★★★★★</div>
+      <p class="review-text">Very professional clinic. Doctor explains everything clearly. Got my root canal done here — absolutely painless experience.</p>
+      <div class="reviewer">Rahul S.</div>
+    </div>
+    <div class="review-card">
+      <div class="stars">★★★★★</div>
+      <p class="review-text">Best dental clinic in Shakarpur. Very hygienic, friendly staff and Dr. Royal is extremely skilled. Highly recommended!</p>
+      <div class="reviewer">Priya M.</div>
+    </div>
+    <div class="review-card">
+      <div class="stars">★★★★★</div>
+      <p class="review-text">Got teeth whitening done and results are amazing. The clinic is clean, comfortable and the experience was very quick.</p>
+      <div class="reviewer">Amit K.</div>
+    </div>
+  </div>
+</section>
+
+<!-- APPOINTMENT FORM -->
+<section class="appt-section" id="appointment">
+  <div class="appt-grid">
+    <div class="appt-info">
+      <div class="section-label">Book Now</div>
+      <div class="section-title">Schedule Your Visit</div>
+      <div class="section-desc">Fill the form and we'll confirm your appointment via WhatsApp or call — within 1 hour.</div>
+      <div class="appt-perks">
+        <div class="appt-perk">
+          <div class="appt-perk-icon"><svg viewBox="0 0 24 24"><path d="M22 16.9v3a2 2 0 01-2.18 2 19.8 19.8 0 01-8.63-3.07A19.5 19.5 0 013.77 11 19.8 19.8 0 01.69 2.38 2 2 0 012.68.22h3a2 2 0 012 1.72c.13.96.36 1.9.7 2.81a2 2 0 01-.45 2.11L6.91 7.91a16 16 0 006.08 6.08l1.27-1.27a2 2 0 012.11-.45c.91.34 1.85.57 2.81.7A2 2 0 0122 16.9z"/></svg></div>
+          <p><strong>Quick Confirmation</strong>We call back within 1 hour to confirm your slot.</p>
+        </div>
+        <div class="appt-perk">
+          <div class="appt-perk-icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg></div>
+          <p><strong>Flexible Timings</strong>Appointments from 10 AM onwards, Mon–Sat.</p>
+        </div>
+        <div class="appt-perk">
+          <div class="appt-perk-icon"><svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg></div>
+          <p><strong>Easy to Find</strong>Opp. Subway, Metro Pillar No. 30, Shakarpur Delhi.</p>
+        </div>
+        <div class="appt-perk">
+          <div class="appt-perk-icon"><svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div>
+          <p><strong>No Hidden Fees</strong>All costs discussed upfront before treatment begins.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="appt-form-wrap">
+      <div class="form-title">Book an Appointment</div>
+      <div class="form-sub">We'll confirm your visit within 1 hour via WhatsApp</div>
+      <div class="form-row">
+        <div class="form-group">
+          <label>Full Name *</label>
+          <input type="text" id="f-name" placeholder="Your name" required/>
+        </div>
+        <div class="form-group">
+          <label>Phone Number *</label>
+          <input type="tel" id="f-phone" placeholder="10-digit number" required/>
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="form-group">
+          <label>Preferred Date *</label>
+          <input type="date" id="f-date" required/>
+        </div>
+        <div class="form-group">
+          <label>Preferred Time</label>
+          <select id="f-time">
+            <option value="">Select time</option>
+            <option>10:00 AM – 11:00 AM</option>
+            <option>11:00 AM – 12:00 PM</option>
+            <option>12:00 PM – 1:00 PM</option>
+            <option>2:00 PM – 3:00 PM</option>
+            <option>3:00 PM – 4:00 PM</option>
+            <option>4:00 PM – 5:00 PM</option>
+            <option>5:00 PM – 6:00 PM</option>
+          </select>
+        </div>
+      </div>
+      <div class="form-group">
+        <label>Service Required</label>
+        <select id="f-service">
+          <option value="">Select service</option>
+          <option>Dental Checkup</option>
+          <option>Teeth Whitening</option>
+          <option>Root Canal</option>
+          <option>Dental Implants</option>
+          <option>Orthodontics / Braces</option>
+          <option>Gum Treatment</option>
+          <option>Tooth Extraction</option>
+          <option>Filling / Cavity</option>
+          <option>Other</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label>Message (Optional)</label>
+        <textarea id="f-msg" placeholder="Any symptoms or special requirements…"></textarea>
+      </div>
+      <button class="btn-submit" onclick="submitForm()">
+        <svg viewBox="0 0 24 24"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg>
+        Send via WhatsApp
+      </button>
+      <div class="form-note">🔒 Your details are kept private and used only for appointment confirmation.</div>
+      <div class="success-box" id="success-box">
+        <p>✅ Opening WhatsApp — your appointment request is ready to send!</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section class="contact-section" id="contact">
+  <div class="section-label">Visit Us</div>
+  <div class="section-title">Find the Clinic</div>
+  <div class="contact-grid">
+    <div class="contact-info">
+      <h3>Contact & Timings</h3>
+      <div class="info-row">
+        <div class="info-icon"><svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg></div>
+        <div>
+          <div class="info-label">Address</div>
+          <div class="info-val">U-157 G.Floor Shakarpur, Main Vikas Marg,<br>opp. Subway, near Metro Pillar No. 30,<br>Delhi – 110092</div>
+        </div>
+      </div>
+      <div class="info-row">
+        <div class="info-icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg></div>
+        <div>
+          <div class="info-label">Timings</div>
+          <div class="info-val">Opens 10:00 AM · Mon – Sat</div>
+        </div>
+      </div>
+      <div class="call-box">
+        <p>Call to book an appointment</p>
+        <div class="nums">
+          <a href="tel:9255476803">92554 76803</a>
+          <a href="tel:9215476803">92154 76803</a>
+        </div>
+      </div>
+    </div>
+    <div class="map-wrap">
+      <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3501.567!2d77.2878!3d28.6441!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x390cfb5c18c4dc35%3A0xc1a6b0c2e22a7eef!2sDr.%20Lokesh%20Royal%20Dental%20Clinic!5e0!3m2!1sen!2sin!4v1710000000000!5m2!1sen!2sin" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <p>© 2025 <span>Dr. Lokesh Royal Dental Clinic</span> · U-157 Shakarpur, Delhi · <a href="tel:9255476803" style="color:var(--gold-light);text-decoration:none;">92554 76803</a></p>
+</footer>
+
+<script>
+  document.getElementById('f-date').setAttribute('min', new Date().toISOString().split('T')[0]);
+
+  function submitForm() {
+    const name    = document.getElementById('f-name').value.trim();
+    const phone   = document.getElementById('f-phone').value.trim();
+    const date    = document.getElementById('f-date').value;
+    const time    = document.getElementById('f-time').value;
+    const service = document.getElementById('f-service').value;
+    const msg     = document.getElementById('f-msg').value.trim();
+
+    if (!name || !phone || !date) {
+      alert('Please fill in Name, Phone and Date.');
+      return;
+    }
+    if (!/^\d{10}$/.test(phone)) {
+      alert('Please enter a valid 10-digit phone number.');
+      return;
+    }
+
+    const text =
+      `*New Appointment Request*%0A` +
+      `----------------------------%0A` +
+      `👤 *Name:* ${encodeURIComponent(name)}%0A` +
+      `📞 *Phone:* ${phone}%0A` +
+      `📅 *Date:* ${date}%0A` +
+      `🕐 *Time:* ${time || 'Not specified'}%0A` +
+      `🦷 *Service:* ${service || 'Not specified'}%0A` +
+      `💬 *Message:* ${encodeURIComponent(msg || 'None')}%0A` +
+      `----------------------------%0A` +
+      `_Sent via Dr. Lokesh Royal Website_`;
+
+    document.getElementById('success-box').classList.add('show');
+    setTimeout(() => {
+      window.open(`https://wa.me/919255476803?text=${text}`, '_blank');
+    }, 700);
+  }
+</script>
+</body>
+</html>
